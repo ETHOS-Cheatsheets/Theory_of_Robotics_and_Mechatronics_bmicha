@@ -1,14 +1,35 @@
-\documentclass{cheatsheet}
-\usepackage{bm}
-\usepackage{textcomp, mathcomp}
-\usepackage{empheq}
-\usepackage{pbox}
-\usepackage{booktabs}
+\documentclass[8pt]{mpscheatsheet}
+\usepackage{amsmath, amssymb, mathtools, mathabx}
+\usepackage[thinlines]{easytable}
+\author{Micha Bosshart - bmicha@ethz.ch}
+\title{Theory of Robotics and Mechatronics}
 
-\doctitle{... Cheatsheet}
-\author{AUTHOR \\ \vspace*{-0.2em}}
+\newcommand{\matlab}[1]{%
+    {\fontfamily{qcr}\selectfont #1}%
+}
 
 \begin{document}
-\section{1. Section}
-	\input{src/1_section/1_subsection.tex}
+    \section{Mechanical Design}
+        \input{Mechanical_Design/main.tex}
+    \section{Spatial Description}   
+        \input{Spatial_Description/main.tex}
+    \section{Screw Theory}
+        \input{Screw_Theory/main.tex}
+    \section{Forward Kinematics (FK)}
+        \input{Forward_Kinematics/main.tex}
+    \vfill \null \columnbreak
+    \section{Rigid Body Velocity}
+        \input{Rigid_Body_Velocity/main.tex}
+    \section{Jacobian}
+        \input{Jacobian/jacobian.tex}
+        \input{Jacobian/DH-jacobian.tex}
+        \input{Jacobian/manipulator-jacobian.tex}
+        \input{Jacobian/inverse-kinematics.tex}
+        \input{Jacobian/manipulability.tex}
+    \section{Parallel and Redundant Robots}
+        \input{Parallel-Redundant_Robots/main.tex}
+    \section{Force Control}
+        \input{Force_Control/main.tex}
+    \section{Computer Vision}
+        \input{Computer_Vision/main.tex}
 \end{document}

@@ -1,0 +1,149 @@
+%!Tex root=ZF_bmicha_TRM.tex
+\subsection{Angular Velocity}
+    \vspace{-1em}
+    \begin{align*}
+        q_a(t) = R_{ab}(t) \cdot q_b && v_{q_a}(t) = \dot{R}_{ab}(t) \cdot q_b
+    \end{align*}
+    \vspace{0em}
+    \begin{center}
+        \begin{tabular}{cp{2em}c}
+            \textbf{Spatial Angular Vel.} && \textbf{Body Angular Vel.}\\[0.5em]
+            $\widehat{\omega}_{ab}^s = \dot{R}_{ab} \cdot R_{ab}^{-1}$&&$\widehat{\omega}_{ab}^b = R_{ab}^{-1} \cdot \dot{R}_{ab}$
+        \end{tabular}
+    \end{center}
+    \begin{center}
+        \begin{tabular}{c}
+            \textbf{Transformation}\\[0.5em]
+            $\widehat{\omega}_{ab}^b = R_{ab}^{-1} \cdot \widehat{\omega}_{ab}^s \cdot R_{ab}$
+        \end{tabular}
+    \end{center}
+    \vspace{-4pt}
+\subsection{Velocity}
+    \vspace{0.5em}
+    \begin{center}
+        \begin{tabular}{cp{2em}c}
+            \textbf{Spatial Vel.} && \textbf{Body Vel.}\\[0.5em]
+            $v_{q_a} = \widehat{\omega}_{ab}^s \times q_a + v_{ab}^s$ && $v_{q_b} = \widehat{\omega}_{ab}^b \times q_b + v_{ab}^b$
+        \end{tabular}
+    \end{center}
+    \begin{minipage}{0.495\linewidth}
+        \footnotesize
+        \begin{description}
+            \item[$\boldsymbol{\widehat{\omega}_{ab}^s}$] is the instantaneous angular velocity of the body as viewed in the spatial frame.
+            \item[$\boldsymbol{v_{ab}^{s\phantom{b}}}$] is the velocity of a point attached to the body frame and passing through the origin of the spatial frame, written in spatial coordinates.
+        \end{description}        
+    \end{minipage}
+    \begin{minipage}{0.48\linewidth}
+        \footnotesize
+        \begin{description}
+            \item[$\boldsymbol{\widehat{\omega}_{ab}^b}$] is the angular velocity of the body frame, written in the body coordinates.
+            \item[$\boldsymbol{v_{ab}^b}$] is the velocity of the origin of the body frame (relative to the spatial frame) written in the body coordinates.
+        \end{description}        
+    \end{minipage}
+\subsection{Twist Velocities}
+        \subsubsubsection{Homogeneous Transformation \hfill $g_{ab}(t)$}
+            \vspace{0.5em}
+            $$
+                g_{ab}(t) = 
+                    \begin{bmatrix}
+                        R_{ab}(t) & p_{ab}(t)\\
+                        0 & 1
+                    \end{bmatrix}
+                    = e^{\widehat{\xi} \theta} \cdot g(0)
+            $$
+            \begin{align*}
+                \boldsymbol{\dot{g}} &= 
+                    \begin{bmatrix}
+                        \dot{R} & \dot{p}\\
+                        0 & 0
+                    \end{bmatrix}
+                &&&
+                \boldsymbol{g^{-1}} &= 
+                    \begin{bmatrix}
+                        R^T & -R^Tp\\
+                        0 & 1
+                    \end{bmatrix}
+                \\
+                & = \widehat{\xi} \dot{\theta} \cdot e^{\widehat{\xi} \theta} \cdot g(0)
+                &&&
+                &= g(0)^{-1} \cdot e^{-\widehat{\xi} \theta}
+                \\
+                & = \widehat{\xi} \dot{\theta} \cdot g(t)
+            \end{align*}
+            $$
+                \boldsymbol{\dot{R}} = \widehat{\omega} \cdot R
+            $$
+            \vspace{-0.5em}
+        \subsubsubsection{Spatial Velocity}
+            \textbf{Twist Form:}
+            $$
+                \widehat{V}_{ab}^s = \dot{g}_{ab}^{\phantom{-l}}\! \cdot g_{ab}^{-1} = 
+                    \begin{bmatrix}
+                        \dot{R} R^T & - \dot{R} R^T p + \dot{p}\\
+                        0 & 0
+                    \end{bmatrix}
+                    =
+                    \widehat{\xi} \dot{\theta}
+            $$
+            \textbf{Twist Coordinates:}
+            $$  
+                V_{ab}^s = 
+                    \begin{bmatrix}
+                        v_{ab}^s \\[0.25em] \omega_{ab}^s
+                    \end{bmatrix}
+                    =
+                    \begin{bmatrix}
+                        -\dot{R} R^T p + \dot{p}\\[0.25em] \left( \dot{R} R^T \right) \widecheck{}
+                    \end{bmatrix}
+                    =
+                    \xi \dot{\theta}
+            $$
+        \subsubsubsection{Body Velocity}
+            \textbf{Twist Form:}
+            $$
+                \widehat{V}_{ab}^b = g_{ab}^{-1} \cdot \dot{g}_{ab}^{\phantom{-1}} = 
+                    \begin{bmatrix}
+                        R^T \dot{R} & R^T \dot{p}\\
+                        0 & 0
+                    \end{bmatrix}
+                    =
+                    g^{-1} \widehat{V}^s g
+            $$
+            \textbf{Twist Coordinates:}
+            $$  
+                V_{ab}^b = 
+                    \begin{bmatrix}
+                        v_{ab}^b \\[0.5em] \omega_{ab}^b
+                    \end{bmatrix}
+                    =
+                    \begin{bmatrix}
+                        R^T \dot{p}\\[0.25em] \left( R^T \dot{R} \right) \widecheck{}
+                    \end{bmatrix}
+            $$
+    \vfill \null \columnbreak
+    \subsubsection{Transformations}
+        \vspace{-1em}
+        $$\boxed{%
+            V_{ab}^s = \textrm{Adj}_g \cdot V_{ab}^b
+        }$$
+        \begin{align*}
+            V_{ac}^s &= V_{ab}^s + \textrm{Adj}_{g_{ab}} \cdot V_{bc}^s\\
+            V_{ac}^b &=  V_{bc}^b + \textrm{Adj}_{g_{bc}^{-1}} \cdot V_{ab}^b
+        \end{align*}
+    \subsubsection{Adjoint \texorpdfstring{\hfill Adj}{}}
+        \vspace{-0.5em}
+        \begin{align*}
+            \textrm{Adj}_g &=
+                \begin{bmatrix}
+                    R & \widehat{p}R\\
+                    0^{3 \times 3} & R
+                \end{bmatrix} \in \mathbb{R}^{6 \times 6}
+            \\[0.25em]
+            \textrm{Adj}_g^{-1} &=
+                \begin{bmatrix}
+                    R^T & -R^T \widehat{p}\\
+                    0^{3 \times 3} & R^T
+                \end{bmatrix}
+                =
+                \textrm{Adj}_{g^{-1}}
+        \end{align*}

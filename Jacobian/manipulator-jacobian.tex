@@ -1,0 +1,53 @@
+\subsection{Manipulator Jacobian}
+    \vspace{-1em}
+    \begin{align*}
+        V_{st}^s &= J_{st}^s(\theta) \cdot \dot{\theta}\\
+        V_{st}^b &= J_{st}^b(\theta) \cdot \dot{\theta}\\[1em]
+        J_{st}^s(\theta) &= \textrm{Adj}_{g_{st}(\theta)} \cdot  J_{st}^b(\theta)
+    \end{align*}
+    \vspace{-0.5em}
+    \subsubsubsection{Spatial Frame}
+        \begin{align*}
+            J_{st}^s(\theta) &=
+                \begin{bmatrix}
+                    \xi_1 & \xi_2' & \cdots & \xi_n'
+                \end{bmatrix}
+            \\[0.5em]
+            \xi_i' &= \textrm{Adj}_{\left(e^{\widehat{\xi}_1\theta_1} \cdots\, e^{\widehat{\xi}_{i-1}\theta_{i-1}}\right)} \cdot \xi_i = \textrm{Adj}_{(g_{i-1})} \cdot \xi_i\\
+            \widehat{\xi}_i' &= g_{i-1} \cdot \widehat{\xi}_i \cdot g_{i-1}^{-1}
+        \end{align*}
+    \subsubsubsection{Body Frame}
+        \begin{align*}
+            J_{st}^b(\theta) &=
+                \begin{bmatrix}
+                    \xi_1^+ & \xi_2^+ & \cdots & \xi_n^+
+                \end{bmatrix}
+            \\[0.5em]
+            \xi_i^+ &= \textrm{Adj}^{-1}_{\left(e^{\widehat{\xi}_i \theta_i} \cdots\, e^{\widehat{\xi}_{n}\theta_{n}} \cdot g_{st}(0)\right)} \cdot \xi_i
+        \end{align*}
+        \vfill \null \columnbreak
+    \subsubsection{Singularities \texorpdfstring{\hfill $\textrm{det}(J_{st}) = 0$}{\textit{Jacobian is not invertible}}}
+        \textbf{Find Singularities} with $\textrm{det}(J_{st}) = 0$.\\[0.5em]
+        \matlab{sings = solve(detJ==0,[th1, th2, th3]);}\vspace{0.5em}
+        \textbf{Linearly Dependent Joints} have nonzero entries in ker(J).\\[0.5em]
+        \matlab{th1 = singularity.th1(3);\\%
+                th2 = singularity.th2(3);\\%
+                th3 = singularity.th3(3);\\%
+                JSingular = subs(Jnum); \% substitute syms\\%
+                nullspace = null(JSingular)%
+                }\vspace{0.25em}
+    \subsubsection{Velocities / SVD}
+        $$
+            J = U \cdot \Sigma \cdot V^T 
+            \qquad
+            \begin{bmatrix}
+                v^0 \\ \omega^0
+            \end{bmatrix}
+            =
+            J \cdot \dot{\theta}                
+        $$
+        \begin{description}
+            \item[Singular Values] of Jacobian correspond to amplification of joint velocities to workspace velocities.
+            \item[Input Directions] correspond to \textbf{rows of $V^T$}
+            \item[Output Directions] correspond to \textbf{columns of $U$}
+        \end{description}

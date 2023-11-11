@@ -1,0 +1,39 @@
+\subsection{DH-Convention}
+    \vspace{-0.5em}
+    $$\boxed{
+        J = \begin{bmatrix}
+            J_1, J_2, \dots , J_n
+        \end{bmatrix} \in \mathbb{R}^{6 \times n}
+    }$$
+    $$
+        H_i^0 = A_1 A_2 \cdots A_n = 
+        \begin{bmatrix}
+            X_i^0 & Y_i^0 & Z_i^0 & T_i^0\\
+            0 & 0 & 0 & 1
+        \end{bmatrix}
+        \in \mathbb{R}^{4 \times 4}
+    $$
+    \begin{minipage}{0.55\linewidth}
+        \begin{center}
+            \hspace{8mm}\textbf{Revolute}
+        \end{center}
+        $$
+            J_i = 
+            \begin{bmatrix}
+                Z_{i-1}^0 \times \left( T_n^0 - T_{i-1}^0 \right) \\[1em]
+                Z_{i-1}^0
+            \end{bmatrix}
+        $$
+    \end{minipage}
+    \begin{minipage}{0.44\linewidth}
+        \begin{center}
+            \hspace{7mm}\textbf{Prismatic}
+        \end{center}
+        $$
+            J_i = 
+            \begin{bmatrix}
+                Z_{i-1}^0 \\[1em]
+                0^{3 \times 1}
+            \end{bmatrix}
+        $$
+    \end{minipage}
