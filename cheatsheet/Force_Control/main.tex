@@ -1,0 +1,53 @@
+%!Tex root=ZF_bmicha_TRM.tex
+\vspace{-0.5em}
+$$
+    \tau = J^T \cdot F, \qquad F = [F_x, F_y, F_z, \tau_x, \tau_y, \tau_z]^T
+$$
+\begin{description}
+    \item[$F :$] Force at EE 
+    \item[$\tau :$] Joint Torque 
+\end{description}
+
+\subsection{Stiffness k}
+    \vspace{-1em}
+    $$
+        F = k \cdot \Delta x
+    $$
+\subsection{Compliance}
+        \subsubsubsection{Passive Compliance}
+            Non-actuated tendency of a body, displaced due to external forces. (Spring)
+        \subsubsubsection{Active Compliance}
+            Controlled compliance in response to an external force.
+    \subsubsection{Compliance Frame}
+        Allows task-decomposition into pure position or force commands.
+        \begin{center}
+            \resizebox{0.7\linewidth}{!}{
+                \includegraphics[
+                    page = {12},
+                    trim = {2.5cm, 7cm, 15.5cm, 4cm},
+                    clip
+                ]{Force_Control/10-1-Force-Control-and-Haptics.pdf}
+            }
+        \end{center}
+        \begin{description}
+            \item[Natural Constraints:] imposed by environment
+                \begin{description}
+                    \item[$\to$]  $f_z=0$ env won't exceed force on robot in z dir
+                \end{description}
+            \item[Artificial Constraints:] how we want robot to act  
+                \begin{description}
+                    \item[$\to$]  $f_x=0$ don't want to exceed force in x dir on env
+                \end{description}
+        \end{description}
+        \vspace{1em}
+        \begin{itemize}
+            \item \# constrains = \# DOF of task space (usually 6)
+            \item constraints usually come in pairs (nat \& art)
+        \end{itemize}
+           
+\subsection{Control}
+    \begin{description}
+        \item[Compliance Control] Measure actual force; adjust in order to fulfill compliance constraints
+        \item[Impedance Control] Similar to compliance control. System is made to behave like mass-spring-damper sys. 
+        \item[Hybrid Position-Force Control] Apply position or force control along different DOFs of compliance frame.
+    \end{description}
